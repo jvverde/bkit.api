@@ -45,7 +45,7 @@ db=${db:-$BKIT_API_DB}
 read -p "Logs (Default: $BKIT_API_LOGS)" log
 log=${log:-$BKIT_API_LOGS}
 
-mimetypes=$(find . -type f -name 'mimetypes.json' ! -path '*/.build/*' -prune -print -quit)
+mimetypes=$(find . -type f -name 'mimetypes.json' -prune -print -quit)
 [[ -f $mimetypes ]] && read -p "I found mimetypes at $mimetypes. Is this correct [Y/n/ignore]?" yni &&
   case $yni in
       [Yy]* ) ;;

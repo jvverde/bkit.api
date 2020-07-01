@@ -9,8 +9,10 @@ sub _replaceAT {
   return $t
 }
 
+print "Auth\n";
 
 sub signup {
+  print "\tSignup\n";
   my $c = shift;
   
   my $req = $c->req->json // {

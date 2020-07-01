@@ -5,6 +5,9 @@ use Mojo::JWT;
 use Test::Mojo::Session;
 use Data::Dumper;
 
+use FindBin;
+BEGIN { unshift @INC, "$FindBin::Bin/../lib" }
+
 $\ = "\n";
 sub random {
   return sprintf("%X", 0|rand(0xFFFFFFFF))

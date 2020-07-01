@@ -3,5 +3,6 @@
 #SDIR=$(readlink -e "$(dirname $0)")
 
 pushd "$(dirname "$0")"
-/bin/su -s /bin/bash -c "morbo -v ./script/bkit" rsyncd
+declare -r ARGS="$@"
+/bin/su -s /bin/bash -c "morbo $ARGS -v ./script/bkit" rsyncd
 popd
