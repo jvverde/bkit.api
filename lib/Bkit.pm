@@ -124,6 +124,18 @@ sub startup {
 
     $c->answer($info);
   });
+
+  $self->helper(check_user => sub {
+    my $c = shift;
+    
+    return $c->error("I need a user")
+      unless my $username = $c->stash('username');
+
+    return $c->answer('available')
+      unless $c->users->{$username};
+       
+    $c->answer('taken');
+  });
   
   $self->helper(send_groups => sub {
     my $c = shift;
@@ -173,6 +185,7 @@ sub startup {
       version => $config->{version}
     })
   });
+  $r->get('/check/#username' => sub {shift->check_user}); 
 
   my $auth = $r->any('/auth')->to(controller => 'auth');
   
